@@ -9,7 +9,7 @@ let shuffle = function() {
   let x = [];
   let y = [];
 
-  shuffler = [];
+  let shuffler = [];
 
   for (var i = 1; i < row.length; i++) {
 
@@ -17,36 +17,30 @@ let shuffle = function() {
     let tileOrientationY = parseInt(document.getElementById("gameContainer").childNodes[i].style.top);
     x.push(tileOrientationX);
     y.push(tileOrientationY);
-
+    shuffler.push({x: tileOrientationX, y: tileOrientationY})
     // let tile = 'tile' + [i];
     // console.log(tileOrientationY + " " + tileOrientationX);
   }
-  console.log(x , y);
-  // console.log("everyday im shufflin");
-  for (var i = x.length - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1));
-    var temp = x[i];
-        x[i] = x[j];
-        x[j] = temp;
-  }
 
-  for (var i = y.length - 1; i > 0; i--) {
+  console.log(shuffler);
+  console.log(x , y);
+
+  for (var i = shuffler.length - 1; i > 0; i--) {
     var j = Math.floor(Math.random() * (i + 1));
-    var temp = y[i];
-        y[i] = y[j];
-        y[j] = temp;
+    var temp = shuffler[i];
+        shuffler[i] = shuffler[j];
+        shuffler[j] = temp;
   }
-  console.log(x,y);
+  console.log(shuffler);
+
+  // console.log("everyday im shufflin");
 
   for (var i = 1; i < x.length; i++) {
-    // let tileOrientationX = parseInt(document.getElementById("gameContainer").childNodes[i].style.left);
-    // let tileOrientationY = parseInt(document.getElementById("gameContainer").childNodes[i].style.top);
-    // console.log(tileOrientationX);
+
     j = [i] - 1
 
-    document.getElementById("gameContainer").childNodes[i].style.left = x[j] + 'px';
-    document.getElementById("gameContainer").childNodes[i].style.top = y[j] + 'px';
-
+    document.getElementById("gameContainer").childNodes[i].style.top = shuffler[j].y + 'px';
+    document.getElementById("gameContainer").childNodes[i].style.left = shuffler[j].x + 'px';
     // tileOrientationY = y[i];
     // tileOrientationX = x[i];
     // tile[i].style.left = y[i] + 'px';
@@ -54,7 +48,8 @@ let shuffle = function() {
     // console.log(tileOrientationY);
 
   }
-
+  document.getElementById("blankTile").style.top = shuffler[15].y + 'px';
+  document.getElementById("blankTile").style.left = shuffler[15].x + 'px';
 
 }
 
