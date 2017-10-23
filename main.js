@@ -1,26 +1,62 @@
-// let emptyButton = document.getElementById('emptyButton').value
-// console.log(emptyButton);
-
 let toAdd = document.getElementById("gameContainer");
 
 
 let buttons = document.getElementsByClassName("switch");
 
-// for (var i = 0; i < 16; i++) {
-//   var newTile = document.createElement("div");
-//   newTile.id = "tile" + [i];
-//   newTile.classname = "switch";
-//   toAdd.appendChild(newTile)
-// }
-//
-// document.appendChild(toAdd);
+
 
 let shuffle = function() {
+  let x = [];
+  let y = [];
 
-  console.log("everyday im shufflin");
+  shuffler = [];
+
+  for (var i = 1; i < row.length; i++) {
+
+    let tileOrientationX = parseInt(document.getElementById("gameContainer").childNodes[i].style.left);
+    let tileOrientationY = parseInt(document.getElementById("gameContainer").childNodes[i].style.top);
+    x.push(tileOrientationX);
+    y.push(tileOrientationY);
+
+    // let tile = 'tile' + [i];
+    // console.log(tileOrientationY + " " + tileOrientationX);
+  }
+  console.log(x , y);
+  // console.log("everyday im shufflin");
+  for (var i = x.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = x[i];
+        x[i] = x[j];
+        x[j] = temp;
+  }
+
+  for (var i = y.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = y[i];
+        y[i] = y[j];
+        y[j] = temp;
+  }
+  console.log(x,y);
+
+  for (var i = 1; i < x.length; i++) {
+    // let tileOrientationX = parseInt(document.getElementById("gameContainer").childNodes[i].style.left);
+    // let tileOrientationY = parseInt(document.getElementById("gameContainer").childNodes[i].style.top);
+    // console.log(tileOrientationX);
+    j = [i] - 1
+
+    document.getElementById("gameContainer").childNodes[i].style.left = x[j] + 'px';
+    document.getElementById("gameContainer").childNodes[i].style.top = y[j] + 'px';
+
+    // tileOrientationY = y[i];
+    // tileOrientationX = x[i];
+    // tile[i].style.left = y[i] + 'px';
+    // blankTile.style.top = 100 + 'px';
+    // console.log(tileOrientationY);
+
+  }
+
+
 }
-
-
 
 let swapper = function() {
 
@@ -42,8 +78,6 @@ let swapper = function() {
 
       let positionx = this.style.left;
       let positiony = this.style.top;
-      // let positionXblank = blankTile.style.left;
-      // let positionYblank = blankTile.style.top;
 
       this.style.left = blankTile.style.left;
       this.style.top = blankTile.style.top
@@ -51,11 +85,6 @@ let swapper = function() {
       blankTile.style.top = positiony;
       blankTile.style.left = positionx;
 
-
-    // console.log("Blank Tile Orientation " + positionXblank + " Blank Tile Orientation " + positionYblank );
-    // console.log("Left Orientation " + this.style.left);
-    // console.log("Top Orientation " + this.style.top);
-    // console.log(this.id);
   }
 }
 
@@ -87,41 +116,6 @@ for(var i=1; i < 16; i++){
       toAdd.appendChild(blankTile);
 
 
-
-      // blankTile.onclick = function() { alert('blah'); };
-
-
-
-
-
-
-
-
-// gameContainer.innerHTML= `
-// <div>
-//   <button onclick="moveBlock(this.value)" class="switch" type="button" name="button">1</button>
-//   <button onclick="moveBlock(this.value)" class="switch" type="button" name="button" value="2">2</button>
-//   <button onclick="moveBlock(this.value)" class="switch" type="button" name="button" value="3">3</button>
-//   <button onclick="moveBlock(this.value)" class="switch" type="button" name="button" value="4">4</button>
-//   <button onclick="moveBlock(this.value)" class="switch" type="button" name="button" value="5">5</button>
-//   <button onclick="moveBlock(this.value)" class="switch" type="button" name="button" value="6">6</button>
-//   <button onclick="moveBlock(this.value)" class="switch" type="button" name="button" value="7">7</button>
-//   <button onclick="moveBlock(this.value)" class="switch" type="button" name="button" value="8">8</button>
-//   <button onclick="moveBlock(this.value)" class="switch" type="button" name="button" value="9">9</button>
-//   <button onclick="moveBlock(this.value)" class="switch" type="button" name="button" value="10">10</button>
-//   <button onclick="moveBlock(this.value)" class="switch" type="button" name="button" value="11">11</button>
-//   <button onclick="moveBlock(this.value)" class="switch" type="button" name="button" value="12">12</button>
-//   <button onclick="moveBlock(this.value)" class="switch" type="button" name="button" value="13">13</button>
-//   <button onclick="moveBlock(this.value)" class="switch" type="button" name="button" value="14">14</button>
-//   <button onclick="moveBlock(this.value)" class="switch" type="button" name="button" value="15">15</button>
-//   <button onclick="moveBlock(this.value)" id="emptyButton" class="switch" type="button" name="button" value="empty"> </button>
-//
-// </div>
-// `;
-
-
-// buttons[0].offsetTop = 350;
-// gameContainer.appendChild(game);
 
 function moveBlock(e) {
   if(e === "empty"){
