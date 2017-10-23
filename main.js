@@ -1,13 +1,11 @@
 let toAdd = document.getElementById("gameContainer");
-
-
 let buttons = document.getElementsByClassName("switch");
 
 
+let org = [];
+
 
 let shuffle = function() {
-  let x = [];
-  let y = [];
 
   let shuffler = [];
 
@@ -15,15 +13,12 @@ let shuffle = function() {
 
     let tileOrientationX = parseInt(document.getElementById("gameContainer").childNodes[i].style.left);
     let tileOrientationY = parseInt(document.getElementById("gameContainer").childNodes[i].style.top);
-    x.push(tileOrientationX);
-    y.push(tileOrientationY);
-    shuffler.push({x: tileOrientationX, y: tileOrientationY})
-    // let tile = 'tile' + [i];
-    // console.log(tileOrientationY + " " + tileOrientationX);
+    shuffler.push({x: tileOrientationX, y: tileOrientationY});
+
   }
 
   console.log(shuffler);
-  console.log(x , y);
+  console.log(org);
 
   for (var i = shuffler.length - 1; i > 0; i--) {
     var j = Math.floor(Math.random() * (i + 1));
@@ -31,25 +26,13 @@ let shuffle = function() {
         shuffler[i] = shuffler[j];
         shuffler[j] = temp;
   }
-  console.log(shuffler);
-
-  // console.log("everyday im shufflin");
-
-  for (var i = 1; i < x.length; i++) {
-
+  for (var i = 1; i < shuffler.length; i++) {
     j = [i] - 1
-
     document.getElementById("gameContainer").childNodes[i].style.top = shuffler[j].y + 'px';
     document.getElementById("gameContainer").childNodes[i].style.left = shuffler[j].x + 'px';
-    // tileOrientationY = y[i];
-    // tileOrientationX = x[i];
-    // tile[i].style.left = y[i] + 'px';
-    // blankTile.style.top = 100 + 'px';
-    // console.log(tileOrientationY);
-
   }
-  document.getElementById("blankTile").style.top = shuffler[15].y + 'px';
-  document.getElementById("blankTile").style.left = shuffler[15].x + 'px';
+  document.getElementById("blankTile").style.top = shuffler.slice(-1)[0].y + 'px';
+  document.getElementById("blankTile").style.left = shuffler.slice(-1)[0].x + 'px';
 
 }
 
@@ -73,23 +56,56 @@ let swapper = function() {
 
       let positionx = this.style.left;
       let positiony = this.style.top;
+      let positionXblank = blankTile.style.left;
+      let positionYblank = blankTile.style.top;
+      let xAnimator = this.style.left;
+      let yAnimator = this.style.top;
 
-      this.style.left = blankTile.style.left;
-      this.style.top = blankTile.style.top
+      // let id = setInterval(frame, 5);
+      //
+      // function frame(){
+      //   if (xAnimator == positionXblank){
+      //     console.log(positionx);
+      //     clearInterval(id);
+      //   } else{
+      //     pos++
+      //     yAnimator = pos + 'px';
+      //     xAnimator = pos + 'px';
+      //     console.log(positionx);
+      //   }
+      // };
+
+
+      this.style.left = positionXblank;
+      this.style.top = positionYblank;
 
       blankTile.style.top = positiony;
       blankTile.style.left = positionx;
-
   }
 }
 
+let reset = function(){
+  for (var i = 1; i < org.length; i++) {
+    j = [i] - 1
+    document.getElementById("gameContainer").childNodes[i].style.top = org[j].y + 'px';
+    document.getElementById("gameContainer").childNodes[i].style.left = org[j].x + 'px';
+  }
+  document.getElementById("blankTile").style.top = org.slice(-1)[0].y + 'px';
+  document.getElementById("blankTile").style.left = org.slice(-1)[0].x + 'px';
+
+
+};
+
 row = [0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4];
 col = [0,1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4];
+picCol = [0,0,3,2,1,0,3,2,1,0,3,2,1,0,3,2,1];
+picRow =[0,0,0,0,0,3,3,3,3,2,2,2,2,1,1,1,1];
 
 for(var i=1; i < 16; i++){
 
   //  var col=i%4;
 	//  var row=Math.floor(i/4);
+
    var newDiv = document.createElement('div');
    newDiv.id = 'tile'+i;
    newDiv.className = 'tile';
@@ -97,10 +113,13 @@ for(var i=1; i < 16; i++){
    newDiv.style.left = col[i]*100 + "px";
 	 newDiv.style.top = row[i]*100 + "px";
    newDiv.onclick = swapper;
+   newDiv.addEventListener("swap", false);
    toAdd.appendChild(newDiv);
+   newDiv.style.backgroundPosition = picCol[i]*100 + "px" + ' ' + picRow[i]*100 + "px";
+   newDiv.style.backgroundImage = 'url("cat.jpg")';
+   org.push({x: col[i]*100, y: row[i]*100});
   //  boardTiles[row][col]=div;
 }
-
 
   var blankTile = document.createElement('div');
       blankTile.id = 'blankTile';
@@ -109,29 +128,7 @@ for(var i=1; i < 16; i++){
       blankTile.style.top = 400 + "px";
       blankTile.onclick = swapper;
       toAdd.appendChild(blankTile);
-
-
-
-function moveBlock(e) {
-  if(e === "empty"){
-      // document.getElementById('emptyButton').style.position = "absolute";
-      // document.getElementById('emptyButton').style.top = 100;
-      // document.getElementById('emptyButton').style.left = 100;
-    console.log("lock-target")
-  }
-
-  buttons[0].offsetTop = 350;
-  console.log(buttons[0].offsetTop);
-
-  for (var i = 0; i < buttons.length; i++) {
-
-
-  }
-
-};
-
-
-
+      org.push({x: 400, y: 400})
 
 for (var i = 0; i < buttons.length; i++) {
   console.log("Button " + buttons[i].value + " Top Offset " + buttons[i].offsetTop)

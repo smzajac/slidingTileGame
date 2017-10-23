@@ -1,15 +1,103 @@
 
-/*body{
-  margin: 300px;
-
-}*/
+body{
+  /*background-image: url("cat.jpg");*/
+}
 
 .tile{
   border: 1px solid black;
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   position: absolute;
+  animation-duration: 3s;
+  animation-name: swap;
 }
+
+#tile1{
+  background-image: url("cat.jpg");
+  background-position: 0px 0px;
+}
+
+#tile2{
+  background-image: url("cat.jpg");
+  background-position: 300px 0px;
+}
+
+#tile3{
+  background-image: url("cat.jpg");
+  background-position: 200px 0px;
+}
+
+#tile4{
+  background-image: url("cat.jpg");
+  background-position: 100px 0px;
+}
+#tile5{
+  background-image: url("cat.jpg");
+  background-position: 0px 300px;
+}
+#tile6{
+  background-image: url("cat.jpg");
+  background-position: 300px 300px;
+}
+#tile7{
+  background-image: url("cat.jpg");
+  background-position: 200px 300px;
+}
+
+#tile8{
+  background-image: url("cat.jpg");
+  background-position: 100px 300px;
+}
+#tile9{
+  background-image: url("cat.jpg");
+  background-position: 0px 200px;
+}
+
+#tile10{
+  background-image: url("cat.jpg");
+  background-position: 300px 200px;
+}
+
+#tile11{
+  background-image: url("cat.jpg");
+  background-position: 200px 200px;
+}
+
+#tile12{
+  background-image: url("cat.jpg");
+  background-position: 100px 200px;
+}
+
+#tile13{
+  background-image: url("cat.jpg");
+  background-position: 0px 100px;
+}
+
+#tile14{
+  background-image: url("cat.jpg");
+  background-position: 300px 100px;
+}
+
+#tile15{
+  background-image: url("cat.jpg");
+  background-position: 200px 100px;
+}
+
+#blankTile{
+  background-color: navy;
+}
+
+
+/*@keyframes swap {
+  from {
+    margin-left: 50%;
+  }
+
+  to {
+    margin-left: 0%;
+  }
+}
+
 
 /*#gameContainer{
   width: 200px;
