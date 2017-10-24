@@ -17,6 +17,7 @@ let shuffle = function() {
 
   }
 
+
   // console.log(shuffler);
   // console.log(org);
 
@@ -33,6 +34,30 @@ let shuffle = function() {
   }
   document.getElementById("blankTile").style.top = shuffler.slice(-1)[0].y + 'px';
   document.getElementById("blankTile").style.left = shuffler.slice(-1)[0].x + 'px';
+
+}
+
+let hover = function(){
+  let x = parseInt(this.style.left);
+  let y = parseInt(this.style.top);
+  let blankY = parseInt(blankTile.style.top);
+  let blankX = parseInt(blankTile.style.left);
+  let distanceX = (blankX - x);
+  let distanceY =  (blankY - y);
+
+
+    if ((distanceX === -100 && distanceY === 0)) {
+      document.body.style.cursor = 'e-resize';
+    }else if ((distanceX === 0 && distanceY === 100)) {
+      document.body.style.cursor = 'n-resize';
+    }else if((distanceX === 0 && distanceY === -100)){
+      document.body.style.cursor = 's-resize';
+    }else if((distanceX === 100 && distanceY === 0)){
+      document.body.style.cursor = 'w-resize';
+    }
+    else{
+      document.body.style.cursor = 'default';
+    }
 
 }
 
@@ -104,6 +129,7 @@ for(var i=1; i < 16; i++){
    toAdd.appendChild(newDiv);
    newDiv.style.backgroundPosition = picCol[i]*100 + "px" + ' ' + picRow[i]*100 + "px";
    newDiv.style.backgroundImage = 'url("cat.jpg")';
+   newDiv.addEventListener("mouseover", hover)
    org.push({x: col[i]*100, y: row[i]*100});
   //  boardTiles[row][col]=div;
 }

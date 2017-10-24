@@ -24,9 +24,9 @@
   width: 200px;
 }
 
-/*.tile:hover {
+.tile:hover {
      transform: rotate(7deg);
-}*/
+}
 
 
 /*@keyframes swap {
