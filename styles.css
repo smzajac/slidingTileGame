@@ -1,91 +1,32 @@
 
-body{
-  /*background-image: url("cat.jpg");*/
-}
 
 .tile{
   border: 1px solid black;
   width: 100px;
   height: 100px;
   position: absolute;
-  animation-duration: 3s;
-  animation-name: swap;
-}
-
-#tile1{
-  background-image: url("cat.jpg");
-  background-position: 0px 0px;
-}
-
-#tile2{
-  background-image: url("cat.jpg");
-  background-position: 300px 0px;
-}
-
-#tile3{
-  background-image: url("cat.jpg");
-  background-position: 200px 0px;
-}
-
-#tile4{
-  background-image: url("cat.jpg");
-  background-position: 100px 0px;
-}
-#tile5{
-  background-image: url("cat.jpg");
-  background-position: 0px 300px;
-}
-#tile6{
-  background-image: url("cat.jpg");
-  background-position: 300px 300px;
-}
-#tile7{
-  background-image: url("cat.jpg");
-  background-position: 200px 300px;
-}
-
-#tile8{
-  background-image: url("cat.jpg");
-  background-position: 100px 300px;
-}
-#tile9{
-  background-image: url("cat.jpg");
-  background-position: 0px 200px;
-}
-
-#tile10{
-  background-image: url("cat.jpg");
-  background-position: 300px 200px;
-}
-
-#tile11{
-  background-image: url("cat.jpg");
-  background-position: 200px 200px;
-}
-
-#tile12{
-  background-image: url("cat.jpg");
-  background-position: 100px 200px;
-}
-
-#tile13{
-  background-image: url("cat.jpg");
-  background-position: 0px 100px;
-}
-
-#tile14{
-  background-image: url("cat.jpg");
-  background-position: 300px 100px;
-}
-
-#tile15{
-  background-image: url("cat.jpg");
-  background-position: 200px 100px;
+  /*animation-duration: 1s;*/
+  transition-duration: 0.5s;
+  /*animation-name: swap;*/
 }
 
 #blankTile{
   background-color: navy;
 }
+
+#tile{
+
+}
+
+.tile-active {
+  background-color: #45CEE0;
+  height: 200px;
+  width: 200px;
+}
+
+/*.tile:hover {
+     transform: rotate(7deg);
+}*/
 
 
 /*@keyframes swap {
@@ -96,51 +37,4 @@ body{
   to {
     margin-left: 0%;
   }
-}
-
-
-/*#gameContainer{
-  width: 200px;
-}*/
-
-/*span{
-  padding: 10px;
-  border: solid 2px black;
-}*/
-
-/*.switch{
-background-color: #4CAF50;
-border: solid 1px white;
-color: white;
-padding: 15px 15px;
-text-align: center;
-text-decoration: none;
-font-size: 16px;
-display: flex;
-flex: 1;
-justify-content: center;
-width: 50px;
-}*/
-
-/*.gameContainer{
-  display: flex;
-  flex-direction: column;
-*/
-
-
-  /*justify-content: space-around;*/
-}
-
-/*.gameContainer>div{
-  display: flex;
-  justify-content: center;
-  width: 200px;
-  flex-wrap: wrap;
-}*/
-
-
-
-.shuffle{
-
-
 }

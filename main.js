@@ -17,8 +17,8 @@ let shuffle = function() {
 
   }
 
-  console.log(shuffler);
-  console.log(org);
+  // console.log(shuffler);
+  // console.log(org);
 
   for (var i = shuffler.length - 1; i > 0; i--) {
     var j = Math.floor(Math.random() * (i + 1));
@@ -35,6 +35,7 @@ let shuffle = function() {
   document.getElementById("blankTile").style.left = shuffler.slice(-1)[0].x + 'px';
 
 }
+
 
 let swapper = function() {
 
@@ -60,20 +61,6 @@ let swapper = function() {
       let positionYblank = blankTile.style.top;
       let xAnimator = this.style.left;
       let yAnimator = this.style.top;
-
-      // let id = setInterval(frame, 5);
-      //
-      // function frame(){
-      //   if (xAnimator == positionXblank){
-      //     console.log(positionx);
-      //     clearInterval(id);
-      //   } else{
-      //     pos++
-      //     yAnimator = pos + 'px';
-      //     xAnimator = pos + 'px';
-      //     console.log(positionx);
-      //   }
-      // };
 
 
       this.style.left = positionXblank;
