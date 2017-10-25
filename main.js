@@ -1,41 +1,128 @@
 let toAdd = document.getElementById("gameContainer");
 let buttons = document.getElementsByClassName("switch");
 
-
 let org = [];
-
 
 let shuffle = function() {
 
-  let shuffler = [];
+  let picker = org.slice();
+  // let blankTileLocation = picker[15].tile;
+  // console.log(blankTileLocation);
 
-  for (var i = 1; i < row.length; i++) {
+  for (var x = 0; x < 400; x++) {
 
-    let tileOrientationX = parseInt(document.getElementById("gameContainer").childNodes[i].style.left);
-    let tileOrientationY = parseInt(document.getElementById("gameContainer").childNodes[i].style.top);
-    shuffler.push({x: tileOrientationX, y: tileOrientationY});
+    let randomDirection = Math.ceil(Math.random() * 4);
+    let positionXblank = parseInt(blankTile.style.left);
+    let positionYblank = parseInt(blankTile.style.top);
+    // console.log(randomDirection);
+
+    if (randomDirection === 1) {
+
+      for (var i = 0; i < org.length; i++) {
+        let topChecker = picker[i].y;
+        let sideChecker = picker[i].x;
+
+
+        let distanceX = (positionXblank - sideChecker);
+        let distanceY = (positionYblank - topChecker);
+        // console.log("distance X " + distanceX);
+        // console.log("distance Y " + distanceY);
+
+        if ((distanceX === 0 && distanceY === 100)) {
+          j = i + 1
+          let swapItem = picker[i];
+          let blankTile = picker[15];
+          picker[i] = blankTile;
+          picker[15] = swapItem;
+            document.getElementById("gameContainer").childNodes[j].style.top = positionYblank + 'px';
+            document.getElementById("gameContainer").childNodes[j].style.left = positionXblank + 'px';
+            document.getElementById("blankTile").style.top = picker[i].y + 'px';
+            document.getElementById("blankTile").style.left = picker[i].x + 'px';
+            // console.log("hit 1");
+        }
+      }
+    }
+    else if (randomDirection === 2) {
+
+      for (var i = 0; i < org.length; i++) {
+        let topChecker = picker[i].y;
+        let sideChecker = picker[i].x;
+
+        let distanceX = (positionXblank - sideChecker);
+        let distanceY = (positionYblank - topChecker);
+        // console.log("distance X " + distanceX);
+        // console.log("distance Y " + distanceY);
+
+        if ((distanceX === 100 && distanceY === 0)) {
+          j = i + 1
+          let swapItem = picker[i];
+          let blankTile = picker[15];
+          picker[i] = blankTile;
+          picker[15] = swapItem;
+            document.getElementById("gameContainer").childNodes[j].style.top = positionYblank + 'px';
+            document.getElementById("gameContainer").childNodes[j].style.left = positionXblank + 'px';
+            document.getElementById("blankTile").style.top = picker[i].y + 'px';
+            document.getElementById("blankTile").style.left = picker[i].x + 'px';
+            // console.log("hit 2");
+        }
+      }
+    }
+    else if (randomDirection === 3) {
+
+      for (var i = 0; i < org.length; i++) {
+        let topChecker = picker[i].y;
+        let sideChecker = picker[i].x;
+
+        let distanceX = (positionXblank - sideChecker);
+        let distanceY = (positionYblank - topChecker);
+
+
+        if ((distanceX === -100 && distanceY === 0)) {
+          j = i + 1
+          let swapItem = picker[i];
+          let blankTile = picker[15];
+          picker[i] = blankTile;
+          picker[15] = swapItem;
+            document.getElementById("gameContainer").childNodes[j].style.top = positionYblank + 'px';
+            document.getElementById("gameContainer").childNodes[j].style.left = positionXblank + 'px';
+            document.getElementById("blankTile").style.top = picker[i].y + 'px';
+            document.getElementById("blankTile").style.left = picker[i].x + 'px';
+            // console.log("hit 3");
+        }
+      }
+    }
+    else if (randomDirection === 4) {
+
+      for (var i = 0; i < org.length; i++) {
+        let topChecker = picker[i].y;
+        let sideChecker = picker[i].x;
+
+        let distanceX = (positionXblank - sideChecker);
+        let distanceY = (positionYblank - topChecker);
+
+
+        if ((distanceX === 0 && distanceY === -100)) {
+          j = i + 1
+          let swapItem = picker[i];
+          let blankTile = picker[15];
+          picker[i] = blankTile;
+          picker[15] = swapItem;
+            document.getElementById("gameContainer").childNodes[j].style.top = positionYblank + 'px';
+            document.getElementById("gameContainer").childNodes[j].style.left = positionXblank + 'px';
+            document.getElementById("blankTile").style.top = picker[i].y + 'px';
+            document.getElementById("blankTile").style.left = picker[i].x + 'px';
+            // console.log("hit 4");
+        }
+      }
+    }
+  }
+
+  console.log(picker);
 
   }
 
 
-  // console.log(shuffler);
-  // console.log(org);
 
-  for (var i = shuffler.length - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1));
-    var temp = shuffler[i];
-        shuffler[i] = shuffler[j];
-        shuffler[j] = temp;
-  }
-  for (var i = 1; i < shuffler.length; i++) {
-    j = [i] - 1
-    document.getElementById("gameContainer").childNodes[i].style.top = shuffler[j].y + 'px';
-    document.getElementById("gameContainer").childNodes[i].style.left = shuffler[j].x + 'px';
-  }
-  document.getElementById("blankTile").style.top = shuffler.slice(-1)[0].y + 'px';
-  document.getElementById("blankTile").style.left = shuffler.slice(-1)[0].x + 'px';
-
-}
 
 let hover = function(){
   let x = parseInt(this.style.left);
@@ -47,12 +134,16 @@ let hover = function(){
 
 
     if ((distanceX === -100 && distanceY === 0)) {
+      //left
       document.body.style.cursor = 'e-resize';
     }else if ((distanceX === 0 && distanceY === 100)) {
+      //down
       document.body.style.cursor = 'n-resize';
     }else if((distanceX === 0 && distanceY === -100)){
+      //up
       document.body.style.cursor = 's-resize';
     }else if((distanceX === 100 && distanceY === 0)){
+      //right
       document.body.style.cursor = 'w-resize';
     }
     else{
@@ -71,12 +162,6 @@ let swapper = function() {
 
       let distanceX = (blankX - x);
       let distanceY =  (blankY - y);
-      console.log('blankX ' + blankX);
-      console.log('blankY ' + blankY);
-      console.log("clicked X " + x);
-      console.log("clicked Y " + y);
-      console.log('distance X ' + distanceX);
-      console.log('distance Y ' + distanceY);
 
   if ((distanceX === -100 && distanceY === 0) || (distanceX === 100 && distanceY === 0) || (distanceX === 0 && distanceY === 100) || (distanceX === 0 && distanceY === -100)) {
 
@@ -84,8 +169,8 @@ let swapper = function() {
       let positiony = this.style.top;
       let positionXblank = blankTile.style.left;
       let positionYblank = blankTile.style.top;
-      let xAnimator = this.style.left;
-      let yAnimator = this.style.top;
+      // let xAnimator = this.style.left;
+      // let yAnimator = this.style.top;
 
 
       this.style.left = positionXblank;
@@ -115,6 +200,7 @@ picRow =[0,0,0,0,0,3,3,3,3,2,2,2,2,1,1,1,1];
 
 for(var i=1; i < 16; i++){
 
+
   //  var col=i%4;
 	//  var row=Math.floor(i/4);
 
@@ -125,12 +211,12 @@ for(var i=1; i < 16; i++){
    newDiv.style.left = col[i]*100 + "px";
 	 newDiv.style.top = row[i]*100 + "px";
    newDiv.onclick = swapper;
-   newDiv.addEventListener("swap", false);
+  //  newDiv.addEventListener("swap", false); //useless
    toAdd.appendChild(newDiv);
    newDiv.style.backgroundPosition = picCol[i]*100 + "px" + ' ' + picRow[i]*100 + "px";
    newDiv.style.backgroundImage = 'url("cat.jpg")';
    newDiv.addEventListener("mouseover", hover)
-   org.push({x: col[i]*100, y: row[i]*100});
+   org.push({tile: newDiv.id, x: col[i]*100, y: row[i]*100});
   //  boardTiles[row][col]=div;
 }
 
@@ -141,9 +227,6 @@ for(var i=1; i < 16; i++){
       blankTile.style.top = 400 + "px";
       blankTile.onclick = swapper;
       toAdd.appendChild(blankTile);
-      org.push({x: 400, y: 400})
+      org.push({tile: blankTile.id, x: 400, y: 400})
 
-for (var i = 0; i < buttons.length; i++) {
-  console.log("Button " + buttons[i].value + " Top Offset " + buttons[i].offsetTop)
-  console.log("Button " + buttons[i].value + " Bottom Offset " + buttons[i].offsetLeft)
-};
+      console.log(org);
